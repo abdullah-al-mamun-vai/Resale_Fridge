@@ -15,9 +15,9 @@ const Navbar = () => {
                 Register
                 <FaAngleDown></FaAngleDown>
             </Link>
-            <ul className="p-2 bg-base-100">
-                <li><Link to={'/sign-up'}>Buyer</Link></li>
-                <li><Link to={'/seller-sign'}>Seller</Link></li>
+            <ul className="p-2 bg-base-100 z-10">
+                <li><Link to={'/sign-up'}>Buyer Account</Link></li>
+                <li><Link to={'/seller-sign'}>Seller Account</Link></li>
             </ul>
         </li>
         {/* {
