@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import toast from "react-hot-toast";
 import app from "../../firebase.init/firebase.init";
 import { UserContext } from "../Auth/AuthContext";
 
@@ -27,7 +28,7 @@ const BookingModal = ({ singleProdutcs }) => {
             body: JSON.stringify(bookedInfo)
         }).then(res => res.json())
             .then(data => {
-
+                toast.success("booked successfully")
             }).catch(error => console.log(error))
     }
     return (
