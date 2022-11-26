@@ -1,5 +1,5 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import Footer from '../Shared/Footer';
 import Navbar from '../Shared/Navbar';
 
@@ -9,7 +9,7 @@ const DashBoardLayout = () => {
             <Navbar></Navbar>
             <div className="drawer drawer-mobile">
                 <input id="dashboardDrayer" type="checkbox" className="drawer-toggle" />
-                <div className="drawer-content flex flex-col items-center justify-center">
+                <div className="drawer-content flex flex-col  justify-start">
                     {/* <!-- Page content here --> */}
 
                     <Outlet></Outlet>
@@ -18,8 +18,7 @@ const DashBoardLayout = () => {
                     <label htmlFor="dashboardDrayer" className="drawer-overlay"></label>
                     <ul className="menu p-4 w-80 bg-base-100 text-base-content">
                         {/* <!-- Sidebar content here --> */}
-                        <li><a>Sidebar Item 1</a></li>
-                        <li><a>Sidebar Item 2</a></li>
+                        <li><Link to={'dashboard/my-order'}>my order</Link></li>
                     </ul>
 
                 </div>

@@ -13,12 +13,16 @@ const BookingModal = ({ singleProdutcs }) => {
         const price = form.price.value
         const phone = form.phone.value
         const meeting = form.meeting.value
+        const email = form.email.value
+        const product_photo = form.product_photo.value
+
         const bookedInfo = {
             name,
             product_name,
             price,
             phone,
             meeting,
+            email, product_photo
         }
         fetch("http://localhost:5000/booked", {
             method: "POST",
@@ -63,6 +67,12 @@ const BookingModal = ({ singleProdutcs }) => {
                                     <span className="label-text font-semibold capitalize mt-4">Product Name </span>
                                 </label>
                                 <input type="text" disabled name='product_name' defaultValue={singleProdutcs?.product} placeholder="Type here" className="input input-bordered w-full " />
+                            </div>
+                            <div className="form-control w-full ">
+                                <label className="label">
+                                    <span className="label-text font-semibold capitalize mt-4">Product Photo </span>
+                                </label>
+                                <input type="text" disabled name='product_photo' defaultValue={singleProdutcs?.photo} placeholder="Type here" className="input input-bordered w-full " />
                             </div>
                             <div className="form-control w-full ">
                                 <label className="label">
