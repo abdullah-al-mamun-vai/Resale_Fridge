@@ -15,23 +15,23 @@ const Service = () => {
                         <div className='grid gap-3 grid-cols-1 md:grid-cols-5 lg-grid-cols-6'>
 
                             <div className="w-full bg-base-100 hover:shadow-xl hover:bg-accent hover:text-primary shadow-gray-400 mt-3">
-                                <figure><FaUbuntu className="h-56 w-3/5 mx-auto" />  </figure>
+                                <figure><FaUbuntu className="h-56 w-2/5 lg:w-3/5 mx-auto" />  </figure>
                                 <h2 className="text-center font-bold text-xl my-3 uppercase">Qualified Experts</h2>
                             </div>
                             <div className="w-full bg-base-100 hover:shadow-xl hover:bg-accent hover:text-primary shadow-gray-400 mt-3">
-                                <figure><FaServicestack className="h-56 w-3/5 mx-auto" />  </figure>
+                                <figure><FaServicestack className="h-56 w-2/5 lg:w-3/5 mx-auto" />  </figure>
                                 <h2 className="text-center font-bold text-xl my-3 uppercase">Service on Schedule</h2>
                             </div>
                             <div className="w-full bg-base-100 hover:shadow-xl hover:bg-accent hover:text-primary shadow-gray-400 mt-3">
-                                <figure><FaUnity className="h-56 w-3/5 mx-auto" />  </figure>
+                                <figure><FaUnity className="h-56 w-2/5 lg:w-3/5 mx-auto" />  </figure>
                                 <h2 className="text-center font-bold text-xl my-3 uppercase">Parts Warranty</h2>
                             </div>
                             <div className="w-full bg-base-100 hover:shadow-xl hover:bg-accent hover:text-primary shadow-gray-400 mt-3">
-                                <figure><FaWallet className="h-56 w-3/5 mx-auto" />  </figure>
+                                <figure><FaWallet className="h-56 w-2/5 lg:w-3/5 mx-auto" />  </figure>
                                 <h2 className="text-center font-bold text-xl my-3 uppercase">Affordable Prices</h2>
                             </div>
                             <div className="w-full bg-base-100 hover:shadow-xl hover:bg-accent hover:text-primary shadow-gray-400 mt-3">
-                                <figure><FaDiagnoses className="h-56 w-3/5 mx-auto" />  </figure>
+                                <figure><FaDiagnoses className="h-56 w-2/5 lg:w-3/5 mx-auto" />  </figure>
                                 <h2 className="text-center font-bold text-xl my-3 uppercase">Special Offers</h2>
                             </div>
 
