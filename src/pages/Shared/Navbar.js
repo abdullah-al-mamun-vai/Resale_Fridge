@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { FaAngleDown } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
@@ -9,6 +10,16 @@ const Navbar = () => {
         <li><Link to={'/home'}>About</Link></li>
         <li><Link to={'/home'}>Review</Link></li>
         <li><Link to={'/add-product'}>Add a product</Link></li>
+        <li tabIndex={2}>
+            <Link>
+                Register
+                <FaAngleDown></FaAngleDown>
+            </Link>
+            <ul className="p-2 bg-base-100">
+                <li><Link to={'/sign-up'}>Buyer</Link></li>
+                <li><Link to={'/seller-sign'}>Seller</Link></li>
+            </ul>
+        </li>
         {/* {
             user ?
                 <>

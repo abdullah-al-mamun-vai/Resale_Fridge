@@ -1,5 +1,6 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query'
+import { Link } from 'react-router-dom'
 const Category = () => {
     const { data: categories = [] } = useQuery({
         queryKey: ['category'],
@@ -20,7 +21,7 @@ const Category = () => {
                             <div className="card-body text-center">
                                 <h2 className="text-secondary font-bold text-xl uppercase">{category?.title}</h2>
                                 <div className="card-actions justify-end">
-                                    <button className="btn btn-primary btn-wide text-lg text-secondary mx-auto">See Now</button>
+                                    <button className="btn btn-primary btn-wide text-lg text-secondary mx-auto"><Link to={'/category/:id'}></Link></button>
                                 </div>
                             </div>
                         </div>
