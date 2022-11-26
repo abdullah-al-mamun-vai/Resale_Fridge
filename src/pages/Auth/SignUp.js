@@ -1,20 +1,37 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { UserContext } from './AuthContext';
 
 const SignUp = () => {
+    const { handleSign, updatUs, user } = useContext(UserContext)
     const handleSellerSign = e => {
         e.preventDefault()
         const form = e.target
         const name = form.name.value
         const email = form.email.value
+        const password = form.password.value
         const userInfo = {
             name,
             email,
         }
+        handleSign(email, password)
+            .then(data => {
+                console.log(data)
+                updatUs({
+                    displayName: name
+                }).then(Cuser => {
+
+                }).catch(error => {
+
+                })
+            }).catch(error => {
+                console.log(error)
+            })
+
     }
     return (
         <div>
 
-            <form className='w-4/6 lg:w-2/6 mx-auto border border-secondary p-4 my-16'>
+            <form onSubmit={handleSellerSign} className='w-4/6 lg:w-2/6 mx-auto border border-secondary p-4 my-16'>
                 <h2 className='font-bold text-xl tex-center'>Sign Up</h2>
                 <div className="form-control w-full ">
                     <label className="label">

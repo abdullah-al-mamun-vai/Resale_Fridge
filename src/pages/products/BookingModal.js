@@ -1,10 +1,81 @@
-import React, { useState } from 'react';
+import { useContext } from "react";
+import { UserContext } from "../Auth/AuthContext";
 
-const BookingModal = () => {
-    const [produtcs, setSetproduct] = useState([])
+const BookingModal = ({ singleProdutcs }) => {
+    const { user } = useContext(UserContext)
+    const handleBook = e => {
+        e.preventDefault()
+        const form = e.target
+        const name = form.name.value
+        const product_name = form.product_name.value
+        const price = form.price.value
+        const phone = form.phone.value
+        const meeting = form.meeting.value
+        const bookedInfo = {
+            name,
+            product_name,
+            price,
+            phone,
+            meeting,
+        }
+    }
     return (
         <div>
+            {/* The button to open modal */}
 
+
+            {/* Put this part before </body> tag */}
+            <input type="checkbox" id="booking_product" className="modal-toggle" />
+            <div className="modal">
+                <div className="modal-box relative">
+                    <label htmlFor="booking_product" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                    <h3 className="text-lg font-bold">Book Now</h3>
+                    <div>
+
+                        <form onSubmit={handleBook} className=' mx-auto border border-secondary p-4 my-4'>
+                            {/* form start  */}
+                            <div className="form-control w-full ">
+                                <label className="label">
+                                    <span className="label-text font-semibold capitalize mt-4">Name </span>
+                                </label>
+                                <input type="text" disabled name='name' defaultValue={user?.displayName} placeholder="Type here" className="input input-bordered w-full " />
+                            </div>
+                            <div className="form-control w-full ">
+                                <label className="label">
+                                    <span className="label-text font-semibold capitalize mt-4">Email </span>
+                                </label>
+                                <input type="text" disabled name='email' defaultValue={user?.email} placeholder="Type here" className="input input-bordered w-full " />
+                            </div>
+                            <div className="form-control w-full ">
+                                <label className="label">
+                                    <span className="label-text font-semibold capitalize mt-4">Product Name </span>
+                                </label>
+                                <input type="text" disabled name='product_name' defaultValue={singleProdutcs?.product} placeholder="Type here" className="input input-bordered w-full " />
+                            </div>
+                            <div className="form-control w-full ">
+                                <label className="label">
+                                    <span className="label-text font-semibold capitalize mt-4">Product  price </span>
+                                </label>
+                                <input type="text" disabled name='price' defaultValue={singleProdutcs?.discount_price} placeholder="Type here" className="input input-bordered w-full " />
+                            </div>
+                            <div className="form-control w-full ">
+                                <label className="label">
+                                    <span className="label-text font-semibold capitalize mt-4">Phone Number</span>
+                                </label>
+                                <input type="number" name='phone' placeholder="Type here" className="input input-bordered w-full " />
+                            </div>
+                            <div className="form-control w-full ">
+                                <label className="label">
+                                    <span className="label-text font-semibold capitalize mt-4">Meeting Location</span>
+                                </label>
+                                <input type="text" name='meeting' placeholder="Type here" className="input input-bordered w-full " />
+                            </div>
+
+                            <button type='submit' className='btn w-full text-primary mt-4 uppercase font-semibold text-lg'>Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 };

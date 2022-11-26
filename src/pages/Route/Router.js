@@ -7,6 +7,7 @@ import Home from '../Home/Home';
 import Products from '../products/Products';
 import Layout from '../layout/Layout';
 import AddProduct from '../Seller/AddProduct';
+import AllProducts from '../products/AllProducts';
 export const router = createBrowserRouter([
     {
         path: '/', element: <Layout></Layout>, errorElement: <ErrorPage></ErrorPage>, children: [
@@ -20,7 +21,7 @@ export const router = createBrowserRouter([
                     const id = params.id
                     console.log(id)
                     return fetch(`http://localhost:5000/category/${id}`)
-                }, element: <Products></Products>,
+                }, element: <AllProducts></AllProducts>,
             }
         ]
     }

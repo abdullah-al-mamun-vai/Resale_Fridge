@@ -1,14 +1,21 @@
 import React, { useContext } from 'react';
 import { FaAngleDown } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { UserContext } from '../Auth/AuthContext';
 
 const Navbar = () => {
-    // const { user, logOut } = useContext(UserContext);
+
+    const { user, logOut } = useContext(UserContext);
     const ourMenu = <>
         <li><Link to={'/home'}>Home</Link></li>
-        <li ><Link to={'/appoinment'}>Appoinment</Link></li>
-        <li><Link to={'/home'}>About</Link></li>
-        <li><Link to={'/home'}>Review</Link></li>
+        {
+            user ? <>
+                <li><button onClick={logOut}>Log Out</button></li>
+            </> : <>
+                <li><Link to={'/home'}>Login</Link></li>
+            </>
+        }
+
         <li><Link to={'/add-product'}>Add a product</Link></li>
         <li tabIndex={2}>
             <Link>
