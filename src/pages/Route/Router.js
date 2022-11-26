@@ -8,6 +8,8 @@ import Products from '../products/Products';
 import Layout from '../layout/Layout';
 import AddProduct from '../Seller/AddProduct';
 import AllProducts from '../products/AllProducts';
+import DashBoardLayout from '../Dashboard/DashBoardLayout';
+import MyOrders from '../Dashboard/MyOrders';
 export const router = createBrowserRouter([
     {
         path: '/', element: <Layout></Layout>, errorElement: <ErrorPage></ErrorPage>, children: [
@@ -24,5 +26,10 @@ export const router = createBrowserRouter([
                 }, element: <AllProducts></AllProducts>,
             }
         ]
+    },
+    {
+        path: '/dashboard', element: <DashBoardLayout></DashBoardLayout>, errorElement: <ErrorPage></ErrorPage>, children: [{
+            path: '/dashboard', element: <MyOrders></MyOrders>
+        }]
     }
 ])

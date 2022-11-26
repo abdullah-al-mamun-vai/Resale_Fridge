@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import app from "../../firebase.init/firebase.init";
 import { UserContext } from "../Auth/AuthContext";
 
 const BookingModal = ({ singleProdutcs }) => {
@@ -18,6 +19,16 @@ const BookingModal = ({ singleProdutcs }) => {
             phone,
             meeting,
         }
+        fetch("http://localhost:5000/booked", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(bookedInfo)
+        }).then(res => res.json())
+            .then(data => {
+
+            }).catch(error => console.log(error))
     }
     return (
         <div>

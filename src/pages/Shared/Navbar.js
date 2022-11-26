@@ -10,6 +10,7 @@ const Navbar = () => {
         <li><Link to={'/home'}>Home</Link></li>
         {
             user ? <>
+                <li><Link to={'/dashboard'}>Dashboard</Link></li>
                 <li><button onClick={logOut}>Log Out</button></li>
             </> : <>
                 <li><Link to={'/home'}>Login</Link></li>
