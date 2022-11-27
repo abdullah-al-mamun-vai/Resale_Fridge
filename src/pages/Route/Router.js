@@ -10,6 +10,7 @@ import AddProduct from '../Seller/AddProduct';
 import AllProducts from '../products/AllProducts';
 import DashBoardLayout from '../Dashboard/DashBoardLayout';
 import MyOrders from '../Dashboard/MyOrders';
+import Login from '../Auth/Login';
 export const router = createBrowserRouter([
     {
         path: '/', element: <Layout></Layout>, errorElement: <ErrorPage></ErrorPage>, children: [
@@ -18,6 +19,7 @@ export const router = createBrowserRouter([
             { path: '/add-product', element: <AddProduct></AddProduct> },
             { path: '/sign-up', element: <SignUp></SignUp> },
             { path: '/seller-sign', element: <SellerSign></SellerSign> },
+            { path: '/login', element:  <Login></Login> },
             {
                 path: '/category/:id', loader: ({ params }) => {
                     const id = params.id

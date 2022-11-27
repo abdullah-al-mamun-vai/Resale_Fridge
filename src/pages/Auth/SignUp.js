@@ -3,7 +3,7 @@ import { UserContext } from './AuthContext';
 
 const SignUp = () => {
     const { handleSign, updatUs, user } = useContext(UserContext)
-    const handleSellerSign = e => {
+    const handleSignUp = e => {
         e.preventDefault()
         const form = e.target
         const name = form.name.value
@@ -31,7 +31,7 @@ const SignUp = () => {
     return (
         <div>
 
-            <form onSubmit={handleSellerSign} className='w-4/6 lg:w-2/6 mx-auto border border-secondary p-4 my-16'>
+            <form onSubmit={handleSignUp} className='w-4/6 lg:w-2/6 mx-auto border border-secondary p-4 my-16'>
                 <h2 className='font-bold text-xl tex-center'>Sign Up</h2>
                 <div className="form-control w-full ">
                     <label className="label">

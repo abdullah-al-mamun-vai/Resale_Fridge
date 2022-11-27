@@ -5,15 +5,15 @@ import { UserContext } from '../Auth/AuthContext';
 
 const Navbar = () => {
 
-    const { user, logOut } = useContext(UserContext);
+    const { user, handleOut } = useContext(UserContext);
     const ourMenu = <>
         <li><Link to={'/home'}>Home</Link></li>
         {
             user ? <>
                 <li><Link to={'/dashboard'}>Dashboard</Link></li>
-                <li><button onClick={logOut}>Log Out</button></li>
+                <li><button onClick={handleOut()}>Log Out</button></li>
             </> : <>
-                <li><Link to={'/home'}>Login</Link></li>
+                <li><Link to={'/login'}>Login</Link></li>
             </>
         }
 
