@@ -14,12 +14,13 @@ import Login from '../Auth/Login';
 import AllBuyers from '../Admin/AllBuyers';
 import AllSeller from '../Admin/AllSeller';
 import MyProducts from '../Seller/MyProducts';
+import PrivateRoute from '../PrivateRoute/PrivateRoute';
 export const router = createBrowserRouter([
     {
         path: '/', element: <Layout></Layout>, errorElement: <ErrorPage></ErrorPage>, children: [
             { path: '/', element: <Home></Home> },
             { path: '/home', element: <Home></Home> },
-            { path: '/add-product', element: <AddProduct></AddProduct> },
+
             { path: '/sign-up', element: <SignUp></SignUp> },
             { path: '/seller-sign', element: <SellerSign></SellerSign> },
             { path: '/login', element: <Login></Login> },
@@ -33,12 +34,13 @@ export const router = createBrowserRouter([
         ]
     },
     {
-        path: '/dashboard', element: <DashBoardLayout></DashBoardLayout>, errorElement: <ErrorPage></ErrorPage>, children: [
-            { path: '/dashboard', element: <MyOrders></MyOrders> },
+        path: '/dashboard', element: <PrivateRoute><DashBoardLayout></DashBoardLayout></PrivateRoute>, errorElement: <ErrorPage></ErrorPage>, children: [
+            // { path: '/dashboard', element: <MyOrders></MyOrders> },
             { path: 'dashboard/my-order', element: <MyOrders></MyOrders> },
             { path: 'dashboard/all-buyers', element: <AllBuyers></AllBuyers> },
             { path: 'dashboard/all-sellers', element: <AllSeller /> },
             { path: 'dashboard/my-products', element: <MyProducts></MyProducts> },
+            { path: 'dashboard/add-product', element: <AddProduct></AddProduct> },
         ]
     }
 ])

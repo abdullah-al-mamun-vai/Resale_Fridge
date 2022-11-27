@@ -1,14 +1,25 @@
 import React, { useContext } from 'react';
+import toast from 'react-hot-toast';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { UserContext } from './AuthContext';
 
 const Login = () => {
+    const location = useLocation();
+    const navigate = useNavigate();
+    let Another = location.state?.from?.pathname || '/'
+
     const { handleLog } = useContext(UserContext)
     const handleLogin = e => {
         e.preventDefault()
         const form = e.target
         const email = form.email.value
         const password = form.password.value
-        handleLog(email, password).then(cUser => console.log(cUser)).catch(error => console.log(error))
+        handleLog(email, password)
+            .then(cUser => {
+                toast.success("log in Succesfully")
+                navigate(Another, { replace: true })
+            })
+            .catch(error => console.log(error))
 
     }
     return (

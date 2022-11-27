@@ -1,7 +1,10 @@
 import React, { useContext } from 'react';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import { UserContext } from './AuthContext';
 
 const SellerSign = () => {
+    const navigate = useNavigate()
     const { handleSign, updatUs } = useContext(UserContext)
     const handleSellerSign = e => {
         e.preventDefault()
@@ -9,9 +12,11 @@ const SellerSign = () => {
         const name = form.name.value
         const email = form.email.value
         const password = form.password.value
+        const photo = form.photo.value
         const userInfo = {
             name,
             email,
+            photo,
             role: "seller"
         }
         handleSign(email, password)
@@ -39,7 +44,10 @@ const SellerSign = () => {
 
         })
             .then(res => res.json())
-            .then(data => console.log(data))
+            .then(data => {
+                navigate('/')
+                toast.success("sign up succesfull")
+            })
     }
     return (
         <div>
@@ -50,6 +58,12 @@ const SellerSign = () => {
                         <span className="label-text font-semibold capitalize mt-4">name </span>
                     </label>
                     <input type="text" name='name' placeholder="Type here" className="input input-bordered w-full " />
+                </div>
+                <div className="form-control w-full ">
+                    <label className="label">
+                        <span className="label-text font-semibold capitalize mt-4">Photo URL </span>
+                    </label>
+                    <input type="text" name='photo' placeholder="Type here" className="input input-bordered w-full " />
                 </div>
                 <div className="form-control w-full ">
                     <label className="label">
@@ -65,7 +79,7 @@ const SellerSign = () => {
                 </div>
 
                 <button type='submit' className='btn w-full text-primary mt-4 uppercase font-semibold text-lg'>Submit</button>
-            </form>
+            </form >
         </div >
     );
 };

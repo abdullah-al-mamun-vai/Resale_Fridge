@@ -8,25 +8,28 @@ const Navbar = () => {
     const { user, handleOut } = useContext(UserContext);
     const ourMenu = <>
         <li><Link to={'/home'}>Home</Link></li>
+        <li><Link to={'/dashboard'}>Dashboard</Link></li>
         {
             user ?
                 <>
-                    <li><Link to={'/dashboard'}>Dashboard</Link></li>
                     <li><button onClick={handleOut}>Log Out</button></li>
                 </> :
                 <li><Link to={'/login'}>Login</Link></li>
         }
-        <li><Link to={'/add-product'}>Add a product</Link></li>
-        <li tabIndex={2}>
-            <Link>
-                Register
-                <FaAngleDown></FaAngleDown>
-            </Link>
-            <ul className="p-2 bg-base-100 z-10">
-                <li><Link to={'/sign-up'}>Buyer Account</Link></li>
-                <li><Link to={'/seller-sign'}>Seller Account</Link></li>
-            </ul>
-        </li>
+        {
+            !user &&
+            <li tabIndex={2}>
+                <Link>
+                    Register
+                    <FaAngleDown></FaAngleDown>
+                </Link>
+                <ul className="p-2 bg-base-100 z-10">
+                    <li><Link to={'/sign-up'}>Buyer Account</Link></li>
+                    <li><Link to={'/seller-sign'}>Seller Account</Link></li>
+                </ul>
+            </li>
+        }
+
         {/* {
             user ?
                 <>

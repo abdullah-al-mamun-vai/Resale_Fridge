@@ -5,7 +5,16 @@ const auth = getAuth(app)
 export const UserContext = createContext();
 const AuthContext = ({ children }) => {
     const [user, setUser] = useState({})
-    console.log(user)
+
+    const [serverCurrentUser, setServerCurrentUser] = useState({})
+    useEffect(() => {
+        fetch(`http://localhost:5000/users/current/${user?.email}`)
+            .then(res => res.json())
+            .then(data => {
+                setServerCurrentUser(data)
+            })
+    }, [user?.email])
+
     const [loading, setLoading] = useState(true);
     // handle sign in 
     const handleSign = (email, password) => {
@@ -45,7 +54,8 @@ const AuthContext = ({ children }) => {
         handleLog,
         handleSign,
         loading,
-        updatUs
+        updatUs,
+        serverCurrentUser
     }
     return (
         <div>

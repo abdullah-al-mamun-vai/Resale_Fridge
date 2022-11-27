@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios'
 import { UserContext } from '../Auth/AuthContext';
+import { useNavigate } from 'react-router-dom';
 const AddProduct = () => {
+    const navigate = useNavigate()
     const { user } = useContext(UserContext)
     const [category, setCategory] = useState([])
     useEffect(() => {
@@ -53,14 +55,15 @@ const AddProduct = () => {
             },
             body: JSON.stringify(add_product)
         }).then(res => res.json()).then(data => {
-            console.log(data)
+            navigate('/dashboard/dashboard/my-products')
         })
 
     }
+
     return (
         <div>
 
-            <form onSubmit={handleAddProduct} className='w-4/6 lg:w-2/6 mx-auto border border-secondary p-4 my-16'>
+            <form onSubmit={handleAddProduct} className='w-4/6 lg:w-4/6 mx-auto border border-secondary p-4 my-16'>
                 <h2 className='font-bold text-xl tex-center'>Add A Product</h2>
                 <div className="form-control w-full ">
                     <label className="label">
@@ -132,6 +135,7 @@ const AddProduct = () => {
                 </div>
                 <button type='submit' className='btn w-full text-primary mt-4 uppercase font-semibold text-lg'>Submit</button>
             </form>
+
         </div>
     );
 };

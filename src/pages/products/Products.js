@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { UserContext } from '../Auth/AuthContext';
 import BookingModal from './BookingModal';
+import { FaFacebook, FaTiktok } from 'react-icons/fa'
 
 const Products = ({ products, setSingleProduct }) => {
-
+    const { serverCurrentUser } = useContext(UserContext)
+    console.log(serverCurrentUser)
     return (
         <div>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 my-16'>
@@ -29,7 +32,16 @@ const Products = ({ products, setSingleProduct }) => {
                                     <label onClick={() => setSingleProduct(product)} htmlFor="booking_product" className="btn btn-neutral text-primary px-3">Buy Now</label>
                                 </div>
                                 <div className='flex justify-between items-center'>
-                                    <i>Seller Name : abdur jahid</i>
+                                    <div>
+                                        <div className="avatar">
+                                            <div className="w-16 rounded-full relative">
+                                                <img src={serverCurrentUser?.photo} alt='' />
+                                            </div>
+                                            <FaFacebook className='text-neutral absolute top-0 right-0 ' />
+
+                                        </div>
+                                        <i>{serverCurrentUser?.name}</i>
+                                    </div>
                                     <i className=" text-secondary">{product?.time}</i>
                                 </div>
                             </div>

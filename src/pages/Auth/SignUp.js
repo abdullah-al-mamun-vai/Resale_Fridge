@@ -1,7 +1,10 @@
 import React, { useContext } from 'react';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import { UserContext } from './AuthContext';
 
 const SignUp = () => {
+    const navigate = useNavigate()
     const { handleSign, updatUs, user } = useContext(UserContext)
     const handleSignUp = e => {
         e.preventDefault()
@@ -9,9 +12,12 @@ const SignUp = () => {
         const name = form.name.value
         const email = form.email.value
         const password = form.password.value
+        const photo = form.photo.value
+
         const userInfo = {
             name,
             email,
+            photo,
             role: "buyers"
         }
         handleSign(email, password)
@@ -38,7 +44,10 @@ const SignUp = () => {
 
         })
             .then(res => res.json())
-            .then(data => console.log(data))
+            .then(data => {
+                navigate('/')
+                toast.success("sign up succesfull")
+            })
     }
     return (
         <div>
@@ -50,6 +59,12 @@ const SignUp = () => {
                         <span className="label-text font-semibold capitalize mt-4">name </span>
                     </label>
                     <input type="text" name='name' placeholder="Type here" className="input input-bordered w-full " />
+                </div>
+                <div className="form-control w-full ">
+                    <label className="label">
+                        <span className="label-text font-semibold capitalize mt-4">Photo URL </span>
+                    </label>
+                    <input type="text" name='photo' placeholder="Type here" className="input input-bordered w-full " />
                 </div>
                 <div className="form-control w-full ">
                     <label className="label">

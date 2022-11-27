@@ -1,9 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { FaTrash } from 'react-icons/fa';
+import toast from 'react-hot-toast'
 
 const AllBuyers = () => {
-    const { data: buyers = [] } = useQuery({
+    const { data: buyers = [], refetch } = useQuery({
         queryKey: ['buyers'],
         queryFn: async () => {
             const res = await fetch('http://localhost:5000/users/buyers')
@@ -12,7 +13,34 @@ const AllBuyers = () => {
         }
     })
     const hanldeDelete = id => {
+        fetch(`http://localhost:5000/users/${id}`, {
+            method: "DELETE"
+        }).then(res => res.json())
+            .then(data => {
+                refetch()
+                toast.success("Successfully Deleted")
 
+            })
+    }
+    const handleMakeAdmin = (id) => {
+
+        fetch(`http://localhost:5000/users/${id}`, {
+            method: "PUT",
+        }).then(res => res.json())
+            .then(data => {
+                refetch()
+                toast.success("Successfully Added")
+            })
+    }
+    const handleVerified = (id) => {
+
+        fetch(`http://localhost:5000/users/verified/${id}`, {
+            method: "PUT",
+        }).then(res => res.json())
+            .then(data => {
+                refetch()
+                toast.success("Successfully verified")
+            })
     }
     return (
         <div>
@@ -26,6 +54,7 @@ const AllBuyers = () => {
                                 </th>
                                 <th>name</th>
                                 <th>email</th>
+                                <th>make role</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -38,7 +67,11 @@ const AllBuyers = () => {
                                         </th>
                                         <td>{buyer?.name}</td>
                                         <td>{buyer?.email}</td>
-                                        <th><button className="btn btn-ghost">Make Admin</button></th>
+                                        <th><button onClick={() => handleMakeAdmin(buyer?._id)} className="btn btn-neutral text-primary">Make Admin</button></th>
+
+                                        {
+                                            !buyer.verified && <th><button onClick={() => handleVerified(buyer?._id)} className="btn btn-neutral text-primary">Verify</button></th>
+                                        }
                                     </tr>)
                             }
 
