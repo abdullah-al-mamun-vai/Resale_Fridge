@@ -29,7 +29,9 @@ const MyProducts = () => {
     const handleAdd = (id) => {
         fetch(`http://localhost:5000/products/${id}`, {
             method: "PUT"
-        }).then(res => res.json()).then(data => console.log(data))
+        }).then(res => res.json()).then(data => {
+            refetch()
+        })
     }
     return (
         <div>
@@ -64,7 +66,10 @@ const MyProducts = () => {
                                     </td>
                                     <td>{product?.product}</td>
                                     <td>{product?.discount_price}</td>
-                                    <th><button className="btn btn-neutral text-primary">Addvertise</button></th>
+                                    {
+                                        !product.addvertise && <th><button onClick={() => handleAdd(product?._id)} className="btn btn-neutral text-primary">Addvertise</button></th>
+                                    }
+
                                 </tr>)
                         }
 
