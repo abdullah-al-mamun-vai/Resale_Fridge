@@ -13,6 +13,7 @@ import MyOrders from '../Dashboard/MyOrders';
 import Login from '../Auth/Login';
 import AllBuyers from '../Admin/AllBuyers';
 import AllSeller from '../Admin/AllSeller';
+import MyProducts from '../Seller/MyProducts';
 export const router = createBrowserRouter([
     {
         path: '/', element: <Layout></Layout>, errorElement: <ErrorPage></ErrorPage>, children: [
@@ -37,6 +38,7 @@ export const router = createBrowserRouter([
             { path: 'dashboard/my-order', element: <MyOrders></MyOrders> },
             { path: 'dashboard/all-buyers', element: <AllBuyers></AllBuyers> },
             { path: 'dashboard/all-sellers', element: <AllSeller /> },
+            { path: 'dashboard/my-products', element: <MyProducts></MyProducts> },
         ]
     }
 ])

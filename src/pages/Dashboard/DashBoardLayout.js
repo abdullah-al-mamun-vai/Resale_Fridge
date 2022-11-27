@@ -21,6 +21,7 @@ const DashBoardLayout = () => {
                         <li className='font-semibold capitalize text-secondary'><Link to={'dashboard/my-order'}>my order</Link></li>
                         <li className='font-semibold capitalize text-secondary'><Link to={'dashboard/all-buyers'}>all buyers</Link></li>
                         <li className='font-semibold capitalize text-secondary'><Link to={'dashboard/all-sellers'}>all sellers</Link></li>
+                        <li className='font-semibold capitalize text-secondary'><Link to={'dashboard/my-products'}>My Products</Link></li>
                     </ul>
 
                 </div>

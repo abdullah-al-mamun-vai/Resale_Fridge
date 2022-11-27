@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios'
+import { UserContext } from '../Auth/AuthContext';
 const AddProduct = () => {
+    const { user } = useContext(UserContext)
     const [category, setCategory] = useState([])
     useEffect(() => {
         axios.get('http://localhost:5000/category')
@@ -28,7 +30,7 @@ const AddProduct = () => {
         const month = dt.getMonth()
         const yr = dt.getFullYear()
         const time = `${date}/${month}/${yr}`
-        console.log(photo)
+        const email = user?.email
         const add_product = {
             photo,
             product,
@@ -41,6 +43,7 @@ const AddProduct = () => {
             year,
             des,
             time,
+            email
         }
         console.log(add_product)
         fetch('http://localhost:5000/products', {
