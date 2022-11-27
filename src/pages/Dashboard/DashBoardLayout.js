@@ -18,7 +18,9 @@ const DashBoardLayout = () => {
                     <label htmlFor="dashboardDrayer" className="drawer-overlay"></label>
                     <ul className="menu p-4 w-80 bg-base-100 text-base-content">
                         {/* <!-- Sidebar content here --> */}
-                        <li><Link to={'dashboard/my-order'}>my order</Link></li>
+                        <li className='font-semibold capitalize text-secondary'><Link to={'dashboard/my-order'}>my order</Link></li>
+                        <li className='font-semibold capitalize text-secondary'><Link to={'dashboard/all-buyers'}>all buyers</Link></li>
+                        <li className='font-semibold capitalize text-secondary'><Link to={'dashboard/all-sellers'}>all sellers</Link></li>
                     </ul>
 
                 </div>

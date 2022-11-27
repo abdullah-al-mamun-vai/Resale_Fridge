@@ -9,14 +9,13 @@ const Navbar = () => {
     const ourMenu = <>
         <li><Link to={'/home'}>Home</Link></li>
         {
-            user ? <>
-                <li><Link to={'/dashboard'}>Dashboard</Link></li>
-                <li><button onClick={handleOut()}>Log Out</button></li>
-            </> : <>
+            user ?
+                <>
+                    <li><Link to={'/dashboard'}>Dashboard</Link></li>
+                    <li><button onClick={handleOut}>Log Out</button></li>
+                </> :
                 <li><Link to={'/login'}>Login</Link></li>
-            </>
         }
-
         <li><Link to={'/add-product'}>Add a product</Link></li>
         <li tabIndex={2}>
             <Link>

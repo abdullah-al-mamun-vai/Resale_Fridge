@@ -5,6 +5,7 @@ const auth = getAuth(app)
 export const UserContext = createContext();
 const AuthContext = ({ children }) => {
     const [user, setUser] = useState({})
+    console.log(user)
     const [loading, setLoading] = useState(true);
     // handle sign in 
     const handleSign = (email, password) => {

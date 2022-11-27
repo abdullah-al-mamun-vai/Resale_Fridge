@@ -15,11 +15,10 @@ const SignUp = () => {
         }
         handleSign(email, password)
             .then(data => {
-                console.log(data)
                 updatUs({
                     displayName: name
                 }).then(Cuser => {
-
+                    handleServerSign(userInfo)
                 }).catch(error => {
 
                 })
@@ -27,6 +26,18 @@ const SignUp = () => {
                 console.log(error)
             })
 
+    }
+    const handleServerSign = userInfo => {
+        fetch('http://localhost:5000/users', {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(userInfo)
+
+        })
+            .then(res => res.json())
+            .then(data => console.log(data))
     }
     return (
         <div>
