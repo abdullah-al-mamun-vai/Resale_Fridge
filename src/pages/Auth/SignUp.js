@@ -12,6 +12,7 @@ const SignUp = () => {
         const userInfo = {
             name,
             email,
+            role: "buyers"
         }
         handleSign(email, password)
             .then(data => {
