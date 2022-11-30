@@ -4,7 +4,6 @@ import SellerSign from '../Auth/SellerSign';
 import SignUp from '../Auth/SignUp';
 import ErrorPage from '../ErrorPage/ErrorPage';
 import Home from '../Home/Home';
-import Products from '../products/Products';
 import Layout from '../layout/Layout';
 import AddProduct from '../Seller/AddProduct';
 import AllProducts from '../products/AllProducts';
@@ -18,7 +17,7 @@ import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import Blog from '../../Blog/Blog';
 import DashboardPrivate from '../PrivateRoute/DashBoardPrivate';
 import Checkout from '../Dashboard/Checkout';
-import { async } from '@firebase/util';
+import MyWishList from '../Dashboard/MyWishList';
 export const router = createBrowserRouter([
     {
         path: '/', element: <Layout></Layout>, errorElement: <ErrorPage></ErrorPage>, children: [
@@ -33,7 +32,7 @@ export const router = createBrowserRouter([
                 path: '/category/:id', loader: ({ params }) => {
                     const id = params.id
                     console.log(id)
-                    return fetch(`http://localhost:5000/category/${id}`)
+                    return fetch(`https://freeze-resale-server-abdullah-al-mamun-vai.vercel.app/category/${id}`)
                 }, element: <PrivateRoute><AllProducts></AllProducts></PrivateRoute>,
             }
         ]
@@ -42,13 +41,14 @@ export const router = createBrowserRouter([
         path: '/dashboard', element: <PrivateRoute><DashBoardLayout></DashBoardLayout></PrivateRoute>, errorElement: <ErrorPage></ErrorPage>, children: [
             // { path: '/dashboard', element: <MyOrders></MyOrders> },
             { path: 'dashboard/my-order', element: <DashboardPrivate><MyOrders></MyOrders></DashboardPrivate> },
+            { path: 'dashboard/my-wishlist', element: <DashboardPrivate><MyWishList></MyWishList></DashboardPrivate> },
             { path: 'dashboard/all-buyers', element: <DashboardPrivate><AllBuyers></AllBuyers></DashboardPrivate> },
             { path: 'dashboard/all-sellers', element: <DashboardPrivate><AllSeller /></DashboardPrivate> },
             { path: 'dashboard/my-products', element: <DashboardPrivate><MyProducts></MyProducts></DashboardPrivate> },
             { path: 'dashboard/add-product', element: <AddProduct></AddProduct> },
             {
                 path: '/dashboard/details/:id', loader: ({ params }) => {
-                    return fetch(`http://localhost:5000/booked/pay/${params.id}`)
+                    return fetch(`https://freeze-resale-server-abdullah-al-mamun-vai.vercel.app/booked/pay/${params.id}`)
                 }, element: <Checkout></Checkout>,
             },
         ]

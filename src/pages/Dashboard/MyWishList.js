@@ -2,37 +2,35 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { FaTrash } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import { UserContext } from '../Auth/AuthContext';
 
-const MyProducts = () => {
+const MyWishList = () => {
     const { user } = useContext(UserContext)
-    const { data: products = [], refetch } = useQuery({
-        queryKey: ['bookedItems'],
+    const { data: wishItems = [], refetch } = useQuery({
+        queryKey: ['wishItems'],
         queryFn: async () => {
-            const res = await fetch(`https://freeze-resale-server-abdullah-al-mamun-vai.vercel.app/products/${user?.email}`)
-            const data = res.json()
+            const res = await fetch(`https://freeze-resale-server-abdullah-al-mamun-vai.vercel.app/user/all-wish/${user?.email}`, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
+            })
+            const data = await res.json()
             return data
         }
     })
-
     const hanldeDelete = id => {
-        fetch(`https://freeze-resale-server-abdullah-al-mamun-vai.vercel.app/products/${id}`, {
+        fetch(`https://freeze-resale-server-abdullah-al-mamun-vai.vercel.app/user/remove/${id}`, {
             method: "DELETE"
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 refetch()
                 toast.success("delete successfully")
             })
     }
-    const handleAdd = (id) => {
-        fetch(`https://freeze-resale-server-abdullah-al-mamun-vai.vercel.app/products/${id}`, {
-            method: "PUT"
-        }).then(res => res.json()).then(data => {
-            refetch()
-        })
-    }
+    console.log(wishItems)
+
     return (
         <div>
             <div className="overflow-x-auto w-full">
@@ -46,34 +44,27 @@ const MyProducts = () => {
                             <th>Title</th>
                             <th>Price</th>
                             <th></th>
-                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            products.map(product =>
-                                <tr key={product?._id}>
+                            wishItems.map(wish =>
+                                <tr key={wish?._id}>
                                     <th>
-                                        <button onClick={() => hanldeDelete(product?._id)}><FaTrash></FaTrash></button>
+                                        <button onClick={() => hanldeDelete(wish?._id)}><FaTrash></FaTrash></button>
                                     </th>
                                     <td>
                                         <div className=" ">
                                             <div className="avatar">
                                                 <div className="mask mask-squircle w-12 h-12">
-                                                    <img src={product?.photo} alt="Avatar Tailwind CSS Component" />
+                                                    <img src={wish?.photo} alt="Avatar Tailwind CSS Component" />
                                                 </div>
                                             </div>
                                         </div>
                                     </td>
-                                    <td>{product?.product}</td>
-                                    <td>{product?.discount_price}</td>
-
-                                    {product?.sold_out === true ? <td> sold Out </td> : <td> available </td>}
-
-                                    {
-                                        !product.addvertise === true && <th><button onClick={() => handleAdd(product?._id)} className="btn btn-neutral text-primary">Addvertise</button></th>
-                                    }
-
+                                    <td>{wish?.title}</td>
+                                    <td>{wish?.price}</td>
+                                    <td><Link className="btn btn-neutral text-primary" to={'/dashboard/dashboard/my-order'}>Buy Now</Link></td>
                                 </tr>)
                         }
 
@@ -85,4 +76,4 @@ const MyProducts = () => {
     );
 };
 
-export default MyProducts;
+export default MyWishList;

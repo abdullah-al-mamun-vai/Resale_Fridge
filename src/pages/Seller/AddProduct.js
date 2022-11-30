@@ -10,7 +10,7 @@ const AddProduct = () => {
     const { user } = useContext(UserContext)
     const [category, setCategory] = useState([])
     useEffect(() => {
-        axios.get('http://localhost:5000/category')
+        axios.get('https://freeze-resale-server-abdullah-al-mamun-vai.vercel.app/category')
             .then(data => setCategory(data.data))
     }, [])
 
@@ -64,7 +64,7 @@ const AddProduct = () => {
                     sellerName,
                     verified
                 }
-                fetch('http://localhost:5000/products', {
+                fetch('https://freeze-resale-server-abdullah-al-mamun-vai.vercel.app/products', {
                     method: "POST",
                     headers: {
                         "content-type": "application/json"

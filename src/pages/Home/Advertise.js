@@ -1,10 +1,29 @@
 import React, { useContext } from 'react';
-import { FaCheckCircle } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { FaCheckCircle, FaHeart } from 'react-icons/fa';
 import { UserContext } from '../Auth/AuthContext';
 
 const Advertise = ({ addvertised, setSingleaddvertise }) => {
-    const { user } = useContext(UserContext)
+    const { serverCurrentUser } = useContext(UserContext)
+
+    const handlewish = (title, email, photo, price) => {
+        const wishinfo = {
+            title,
+            email,
+            photo,
+            price
+        }
+        fetch("https://freeze-resale-server-abdullah-al-mamun-vai.vercel.app/user/wish", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(wishinfo)
+        }).then(res => res.json())
+            .then(data => {
+                toast.success("successfully added")
+            })
+    }
     return (
         <div className='py-16'>
             <h2 className='capitalize text-3xl font-bold text-center mb-24'>advertise</h2>
@@ -47,6 +66,7 @@ const Advertise = ({ addvertised, setSingleaddvertise }) => {
                                         <i className='ml-2 capitalize font-semibold'>{addvertise?.sellerName}</i>
                                     </div>
                                     <i className=" text-secondary">{addvertise?.time}</i>
+                                    <button onClick={() => handlewish(addvertise?.product, serverCurrentUser.email, addvertise.photo, addvertise.discount_price)}><FaHeart className='text-lg'></FaHeart></button>
                                 </div>
                             </div>
                         </div>)

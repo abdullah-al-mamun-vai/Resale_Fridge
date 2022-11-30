@@ -8,7 +8,7 @@ const AuthContext = ({ children }) => {
 
     const [serverCurrentUser, setServerCurrentUser] = useState({})
     useEffect(() => {
-        fetch(`http://localhost:5000/users/current/${user?.email}`)
+        fetch(`https://freeze-resale-server-abdullah-al-mamun-vai.vercel.app/users/current/${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 setServerCurrentUser(data)

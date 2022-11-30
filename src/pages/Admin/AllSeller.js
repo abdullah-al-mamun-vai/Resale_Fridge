@@ -6,14 +6,14 @@ const AllSeller = () => {
     const { data: sellers = [], refetch } = useQuery({
         queryKey: ['sellers'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/users/sellers')
+            const res = await fetch('https://freeze-resale-server-abdullah-al-mamun-vai.vercel.app/users/sellers')
             const data = await res.json();
             return data
         }
     })
     // handle user delete 
     const hanldeDelete = id => {
-        fetch(`http://localhost:5000/users/${id}`, {
+        fetch(`https://freeze-resale-server-abdullah-al-mamun-vai.vercel.app/users/${id}`, {
             method: "DELETE"
         }).then(res => res.json())
             .then(data => {
@@ -24,7 +24,7 @@ const AllSeller = () => {
     // make admin 
     const handleMakeAdmin = (id) => {
 
-        fetch(`http://localhost:5000/users/${id}`, {
+        fetch(`https://freeze-resale-server-abdullah-al-mamun-vai.vercel.app/users/${id}`, {
             method: "PUT",
         }).then(res => res.json())
             .then(data => {
@@ -34,7 +34,7 @@ const AllSeller = () => {
     }
     const handleVerified = (id) => {
 
-        fetch(`http://localhost:5000/users/verified/${id}`, {
+        fetch(`https://freeze-resale-server-abdullah-al-mamun-vai.vercel.app/users/verified/${id}`, {
             method: "PUT",
         }).then(res => res.json())
             .then(data => {

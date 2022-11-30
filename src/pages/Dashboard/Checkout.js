@@ -15,12 +15,12 @@ const Checkout = () => {
         const name = form.stu_name.value;
         if (email && name) {
 
-            fetch(`http://localhost:5000/booked/${booked._id}`, {
+            fetch(`https://freeze-resale-server-abdullah-al-mamun-vai.vercel.app/booked/${booked._id}`, {
                 method: "PUT"
             }).then(res => res.json())
                 .then(data => {
 
-                    fetch(`http://localhost:5000/products/sold/${booked.category}`, {
+                    fetch(`https://freeze-resale-server-abdullah-al-mamun-vai.vercel.app/products/sold/${booked.category}`, {
                         method: "PUT"
                     })
                         .then(res => res.json())

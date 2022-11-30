@@ -4,7 +4,7 @@ export const useSeller = email => {
     const [seller, setSeller] = useState('')
 
     useEffect(() => {
-        fetch(`http://localhost:5000/users/seller/${email}`)
+        fetch(`https://freeze-resale-server-abdullah-al-mamun-vai.vercel.app/users/seller/${email}`)
             .then(res => res.json())
             .then(data => {
                 setSeller(data.role)

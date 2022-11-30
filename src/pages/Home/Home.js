@@ -11,7 +11,7 @@ const Home = () => {
     const { data: addvertised = [] } = useQuery({
         queryKey: ['addvertised'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/all-products/addvertise')
+            const res = await fetch('https://freeze-resale-server-abdullah-al-mamun-vai.vercel.app/all-products/addvertise')
             const data = await res.json()
             return data
         }
@@ -24,7 +24,7 @@ const Home = () => {
             {
                 addvertised && <Advertise setSingleaddvertise={setSingleaddvertise} addvertised={addvertised}></Advertise>
             }
-            <PrivateRoute> <AddModal singleaddvertise={singleaddvertise}></AddModal></PrivateRoute>
+            <AddModal singleaddvertise={singleaddvertise}></AddModal>
             <Service></Service>
         </div>
     );

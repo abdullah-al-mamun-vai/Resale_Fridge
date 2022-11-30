@@ -5,7 +5,7 @@ const Category = () => {
     const { data: categories = [] } = useQuery({
         queryKey: ['category'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/category')
+            const res = await fetch('https://freeze-resale-server-abdullah-al-mamun-vai.vercel.app/category')
             const data = await res.json();
             return data
         }

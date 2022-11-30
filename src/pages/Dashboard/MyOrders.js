@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { FaTrash } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
@@ -10,17 +10,17 @@ const MyOrders = () => {
     const { data: bookedItems = [], refetch } = useQuery({
         queryKey: ['bookedItems'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/booked/${user?.email}`, {
+            const res = await fetch(`https://freeze-resale-server-abdullah-al-mamun-vai.vercel.app/booked/${user?.email}`, {
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
                 }
             })
-            const data = res.json()
+            const data = await res.json()
             return data
         }
     })
     const hanldeDelete = id => {
-        fetch(`http://localhost:5000/booked/${id}`, {
+        fetch(`https://freeze-resale-server-abdullah-al-mamun-vai.vercel.app/booked/${id}`, {
             method: "DELETE"
         })
             .then(res => res.json())

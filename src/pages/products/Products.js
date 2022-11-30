@@ -1,10 +1,30 @@
 import React, { useContext } from 'react';
 import { UserContext } from '../Auth/AuthContext';
-import BookingModal from './BookingModal';
-import { FaCheckCircle, FaFacebook, FaTiktok } from 'react-icons/fa'
+import { FaCheckCircle, FaHeart } from 'react-icons/fa'
+import toast from 'react-hot-toast';
 
 const Products = ({ products, setSingleProduct }) => {
     const { serverCurrentUser } = useContext(UserContext)
+
+    const handlewish = (title, email, photo, price) => {
+        const wishinfo = {
+            title,
+            email,
+            photo,
+            price
+        }
+        fetch("https://freeze-resale-server-abdullah-al-mamun-vai.vercel.app/user/wish", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(wishinfo)
+        }).then(res => res.json())
+            .then(data => {
+                toast.success("successfully added")
+            })
+    }
+
     return (
         <div>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 my-16'>
@@ -28,7 +48,10 @@ const Products = ({ products, setSingleProduct }) => {
                                         <div className="badge badge-outline">Buy Year:{product?.year}</div>
 
                                     </div>
-                                    <label onClick={() => setSingleProduct(product)} htmlFor="booking_product" className="btn btn-neutral text-primary px-3">Buy Now</label>
+                                    <div>
+                                        <label onClick={() => setSingleProduct(product)} htmlFor="booking_product" className="btn btn-neutral text-primary px-3">Buy Now</label>
+
+                                    </div>
                                 </div>
                                 <div className='flex justify-between items-center'>
                                     <div className='flex  items-center '>
@@ -37,13 +60,14 @@ const Products = ({ products, setSingleProduct }) => {
                                                 <img src={product?.sellerImg} alt='' />
                                             </div>
                                             {
-                                                product.verified && <FaCheckCircle className='text-neutral absolute top-0 right-0 ' ></FaCheckCircle>
+                                                product.verified && <FaCheckCircle className='text-neutral absolute top-0 right-0 z-10' ></FaCheckCircle>
                                             }
 
                                         </div>
                                         <i className='ml-2 capitalize font-semibold'>{product?.sellerName}</i>
                                     </div>
                                     <i className=" text-secondary">{product?.time}</i>
+                                    <button onClick={() => handlewish(product?.product, serverCurrentUser.email, product.photo, product.discount_price)}><FaHeart className='text-lg'></FaHeart></button>
                                 </div>
                             </div>
                         </div>)

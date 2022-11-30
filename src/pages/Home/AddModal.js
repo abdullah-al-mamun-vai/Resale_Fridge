@@ -26,7 +26,7 @@ const AddModal = ({ singleaddvertise }) => {
             email, product_photo,
             category: singleaddvertise._id,
         }
-        fetch("http://localhost:5000/booked", {
+        fetch("https://freeze-resale-server-abdullah-al-mamun-vai.vercel.app/booked", {
             method: "POST",
             headers: {
                 "content-type": "application/json"
