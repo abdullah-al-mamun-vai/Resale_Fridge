@@ -90,7 +90,7 @@ const Checkout = () => {
                             <span className="mb-1">Message</span>
                             <textarea rows="3" className="block input w-full rounded-md  text-black input-bordered border-t-0 border-l-0 border-r-0 "></textarea>
                         </label>
-                        <button className="self-center px-8 py-3 text-lg rounded focus:ring hover:ring focus:ring-opacity-75 bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white font-semibold focus:ring-violet-400 hover:ring-violet-400">Pay Now</button>
+                        <button className="self-center px-8 py-3 text-lg rounded focus:ring hover:ring focus:ring-opacity-75 bg-neutral text-primary font-semibold focus:ring-violet-400 hover:ring-violet-400">Pay Now</button>
                     </form>
                 </div>
             </section>
