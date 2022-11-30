@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useContext, useEffect } from 'react';
 import toast from 'react-hot-toast';
 import { FaTrash } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import { UserContext } from '../Auth/AuthContext';
 
 const MyOrders = () => {
@@ -9,19 +10,21 @@ const MyOrders = () => {
     const { data: bookedItems = [], refetch } = useQuery({
         queryKey: ['bookedItems'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/booked/${user?.email}`)
+            const res = await fetch(`http://localhost:5000/booked/${user?.email}`, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
+            })
             const data = res.json()
             return data
         }
     })
-
     const hanldeDelete = id => {
         fetch(`http://localhost:5000/booked/${id}`, {
             method: "DELETE"
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 refetch()
                 toast.success("delete successfully")
             })
@@ -59,7 +62,11 @@ const MyOrders = () => {
                                     </td>
                                     <td>{booked?.product_name}</td>
                                     <td>{booked?.price}</td>
-                                    <th><button className="btn btn-ghost">pay</button></th>
+                                    {
+                                        booked.paid ? <th><button disabled className="btn btn-neutral text-primary">paid</button></th>
+                                            : <th><button className="btn btn-neutral text-primary"><Link to={`/dashboard/details/${booked?._id}`}>pay</Link></button></th>
+                                    }
+
                                 </tr>)
                         }
 

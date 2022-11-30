@@ -16,15 +16,17 @@ const Category = () => {
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
                 {
                     categories?.map(category =>
-                        <div key={category._id} className="card w-full bg-base-100 shadow-xl shadow-gray-400 mt-3">
-                            <figure><img src={category?.img} className="h-56 w-3/5 mx-auto" alt="Shoes" /></figure>
-                            <div className="card-body text-center">
-                                <h2 className="text-secondary font-bold text-xl uppercase">{category?.title}</h2>
-                                <div className="card-actions justify-end">
-                                    <button className="btn btn-primary btn-wide text-lg text-secondary mx-auto"><Link to={`/category/${category._id}`}>See All</Link></button>
+                        <Link key={category._id} to={`/category/${category._id}`}>
+                            <div className="card w-full bg-base-100 shadow-xl shadow-gray-400 mt-3">
+                                <figure><img src={category?.img} className="h-56 w-3/5 mx-auto" alt="Shoes" /></figure>
+                                <div className="card-body text-center">
+                                    <h2 className="text-secondary font-bold text-xl uppercase">{category?.title}</h2>
+                                    <div className="card-actions justify-end">
+                                        <button className="btn btn-primary btn-wide text-lg text-secondary mx-auto">See All</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </Link>
                     )
                 }
             </div>

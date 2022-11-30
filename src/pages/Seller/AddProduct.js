@@ -3,6 +3,9 @@ import axios from 'axios'
 import { UserContext } from '../Auth/AuthContext';
 import { useNavigate } from 'react-router-dom';
 const AddProduct = () => {
+    // get current user profile
+    const { serverCurrentUser } = useContext(UserContext)
+
     const navigate = useNavigate()
     const { user } = useContext(UserContext)
     const [category, setCategory] = useState([])
@@ -25,38 +28,53 @@ const AddProduct = () => {
         const location = from.location.value
         const year = from.year.value
         const des = from.des.value
-        const photo = from.photo.value
-        // date start 
+        const image = from.photo.files[0]
+        const sellerImg = serverCurrentUser?.photo
+        const sellerName = serverCurrentUser?.name
+        const verified = serverCurrentUser?.verified
+        // date start
         const dt = new Date()
         const date = dt.getDate()
         const month = dt.getMonth()
         const yr = dt.getFullYear()
         const time = `${date}/${month}/${yr}`
         const email = user?.email
-        const add_product = {
-            photo,
-            product,
-            regular_price,
-            discount_price,
-            condition,
-            category,
-            phone,
-            location,
-            year,
-            des,
-            time,
-            email
-        }
-        console.log(add_product)
-        fetch('http://localhost:5000/products', {
+        const fromData = new FormData()
+        fromData.append('image', image)
+        const url = "https://api.imgbb.com/1/upload?key=168403ecf414ec6376a8abab6aef03d7"
+        fetch(url, {
             method: "POST",
-            headers: {
-                "content-type": "application/json"
-            },
-            body: JSON.stringify(add_product)
-        }).then(res => res.json()).then(data => {
-            navigate('/dashboard/dashboard/my-products')
-        })
+            body: fromData
+        }).then(res => res.json())
+            .then(data => {
+                const add_product = {
+                    photo: data.data.display_url,
+                    product,
+                    regular_price,
+                    discount_price,
+                    condition,
+                    category,
+                    phone,
+                    location,
+                    year,
+                    des,
+                    time,
+                    email,
+                    sellerImg,
+                    sellerName,
+                    verified
+                }
+                fetch('http://localhost:5000/products', {
+                    method: "POST",
+                    headers: {
+                        "content-type": "application/json"
+                    },
+                    body: JSON.stringify(add_product)
+                }).then(res => res.json()).then(data => {
+                    navigate('/dashboard/dashboard/my-products')
+                })
+
+            })
 
     }
 
@@ -73,9 +91,9 @@ const AddProduct = () => {
                 </div>
                 <div className="form-control w-full ">
                     <label className="label">
-                        <span className="label-text font-semibold capitalize mt-4">Product Photo URL </span>
+                        <span className="label-text font-semibold capitalize mt-4">Product Photo </span>
                     </label>
-                    <input type="text" required name='photo' placeholder="Type here" className="input input-bordered w-full " />
+                    <input type="file" name='photo' accept='image/*' placeholder="Type here" className="input  w-full " />
                 </div>
                 <div className="form-control w-full ">
                     <label className="label">

@@ -23,16 +23,16 @@ const Banner = () => {
     ]
     return (
         <div>
-            <div className="carousel w-full">
+            <div className="carousel w-full rounded-md ">
                 {
                     banners.map(banner =>
                         <div id={`slide${banner.id}`} key={banner.id} className=" carousel-item relative w-full" >
-                            < div className='w-full lg:h-4/5'  >
+                            < div className='w-full'  >
                                 <img alt='logo' src={banner.img} className="brightness-50 w-full relative h-96" />
                                 <div className='absolute left-0 top-0 bottom-0 right-0 w-3/5 mx-auto flex justify-center items-center'>
-                                    <div>
-                                        <h2 className='text-xl lg:text-5xl capitalize text-primary font-bold'>this is header</h2>
-                                        <button className="btn btn-primary">book now</button>
+                                    <div className='text-center'>
+                                        <h2 className='text-xl lg:text-5xl capitalize text-primary font-bold'>Old stuff doesn't mean give away, sell now</h2>
+                                        <button className="btn btn-primary mt-3">buy now</button>
                                     </div>
                                 </div>
                             </div>

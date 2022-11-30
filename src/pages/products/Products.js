@@ -1,17 +1,16 @@
 import React, { useContext } from 'react';
 import { UserContext } from '../Auth/AuthContext';
 import BookingModal from './BookingModal';
-import { FaFacebook, FaTiktok } from 'react-icons/fa'
+import { FaCheckCircle, FaFacebook, FaTiktok } from 'react-icons/fa'
 
 const Products = ({ products, setSingleProduct }) => {
     const { serverCurrentUser } = useContext(UserContext)
-    console.log(serverCurrentUser)
     return (
         <div>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 my-16'>
                 {
                     products.map(product =>
-                        <div key={product?._id} className="card w-full bg-base-100 shadow-xl">
+                        <div key={product?._id} className="card w-full bg-base-100 shadow-xl shadow-gray-400">
                             <figure><img src={product?.photo} alt="fridge" className='h-56' /></figure>
                             <div className="card-body">
                                 <h2 className="card-title">
@@ -32,15 +31,17 @@ const Products = ({ products, setSingleProduct }) => {
                                     <label onClick={() => setSingleProduct(product)} htmlFor="booking_product" className="btn btn-neutral text-primary px-3">Buy Now</label>
                                 </div>
                                 <div className='flex justify-between items-center'>
-                                    <div>
+                                    <div className='flex  items-center '>
                                         <div className="avatar">
-                                            <div className="w-16 rounded-full relative">
-                                                <img src={serverCurrentUser?.photo} alt='' />
+                                            <div className="w-20 rounded-full relative">
+                                                <img src={product?.sellerImg} alt='' />
                                             </div>
-                                            <FaFacebook className='text-neutral absolute top-0 right-0 ' />
+                                            {
+                                                product.verified && <FaCheckCircle className='text-neutral absolute top-0 right-0 ' ></FaCheckCircle>
+                                            }
 
                                         </div>
-                                        <i>{serverCurrentUser?.name}</i>
+                                        <i className='ml-2 capitalize font-semibold'>{product?.sellerName}</i>
                                     </div>
                                     <i className=" text-secondary">{product?.time}</i>
                                 </div>

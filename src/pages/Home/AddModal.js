@@ -1,10 +1,9 @@
-import { useContext } from "react";
-import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
-import app from "../../firebase.init/firebase.init";
-import { UserContext } from "../Auth/AuthContext";
+import React, { useContext } from 'react';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../Auth/AuthContext';
 
-const BookingModal = ({ singleProdutcs }) => {
+const AddModal = ({ singleaddvertise }) => {
     const navigate = useNavigate()
     const { user } = useContext(UserContext)
     const handleBook = e => {
@@ -25,7 +24,7 @@ const BookingModal = ({ singleProdutcs }) => {
             phone,
             meeting,
             email, product_photo,
-            category: singleProdutcs._id,
+            category: singleaddvertise._id,
         }
         fetch("http://localhost:5000/booked", {
             method: "POST",
@@ -43,10 +42,10 @@ const BookingModal = ({ singleProdutcs }) => {
         <div>
             {/* The button to open modal */}
             {/* Put this part before </body> tag */}
-            <input type="checkbox" id="booking_product" className="modal-toggle" />
+            <input type="checkbox" id="add_product" className="modal-toggle" />
             <div className="modal">
                 <div className="modal-box relative">
-                    <label htmlFor="booking_product" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                    <label htmlFor="add_product" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
                     <h3 className="text-lg font-bold">Book Now</h3>
                     <div>
 
@@ -68,19 +67,19 @@ const BookingModal = ({ singleProdutcs }) => {
                                 <label className="label">
                                     <span className="label-text font-semibold capitalize mt-4">Product Name </span>
                                 </label>
-                                <input type="text" disabled name='product_name' defaultValue={singleProdutcs?.product} placeholder="Type here" className="input input-bordered w-full " />
+                                <input type="text" disabled name='product_name' defaultValue={singleaddvertise?.product} placeholder="Type here" className="input input-bordered w-full " />
                             </div>
                             <div className="form-control w-full ">
                                 <label className="label">
                                     <span className="label-text font-semibold capitalize mt-4">Product Photo </span>
                                 </label>
-                                <input type="text" disabled name='product_photo' defaultValue={singleProdutcs?.photo} placeholder="Type here" className="input input-bordered w-full " />
+                                <input type="text" disabled name='product_photo' defaultValue={singleaddvertise?.photo} placeholder="Type here" className="input input-bordered w-full " />
                             </div>
                             <div className="form-control w-full ">
                                 <label className="label">
                                     <span className="label-text font-semibold capitalize mt-4">Product  price </span>
                                 </label>
-                                <input type="text" disabled name='price' defaultValue={singleProdutcs?.discount_price} placeholder="Type here" className="input input-bordered w-full " />
+                                <input type="text" disabled name='price' defaultValue={singleaddvertise?.discount_price} placeholder="Type here" className="input input-bordered w-full " />
                             </div>
                             <div className="form-control w-full ">
                                 <label className="label">
@@ -104,4 +103,4 @@ const BookingModal = ({ singleProdutcs }) => {
     );
 };
 
-export default BookingModal;
+export default AddModal;

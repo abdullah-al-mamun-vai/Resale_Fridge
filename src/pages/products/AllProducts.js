@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import BookingModal from './BookingModal';
 import Products from './Products';
 
@@ -10,7 +11,7 @@ const AllProducts = () => {
     return (
         <div>
             <Products products={products} setSingleProduct={setSingleProduct}></Products>
-            <BookingModal singleProdutcs={singleProdutcs}></BookingModal>
+            <PrivateRoute><BookingModal singleProdutcs={singleProdutcs}></BookingModal></PrivateRoute>
         </div>
     );
 };

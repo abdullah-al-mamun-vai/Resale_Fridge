@@ -2,10 +2,13 @@ import React, { useContext } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { UserContext } from '../Auth/AuthContext';
 import { Bars } from 'react-loader-spinner'
+import { useSeller } from '../useHook/useSellers';
+import { useBuyer } from '../useHook/useBuyers';
 
-const PrivateRoute = ({ children }) => {
-    const location = useLocation()
+const DashboardPrivate = ({ children }) => {
     const { user, loading } = useContext(UserContext)
+
+    const location = useLocation()
     if (loading) {
         return <div className="flex h-screen items-center justify-center">
             <Bars
@@ -17,7 +20,7 @@ const PrivateRoute = ({ children }) => {
                 wrapperClass=""
                 visible={true}
             />
-        </div>
+        </div >
     }
     if (!user) {
         return <Navigate to={'/login'} state={{ from: location }} replace></Navigate>
@@ -25,4 +28,4 @@ const PrivateRoute = ({ children }) => {
     return children
 };
 
-export default PrivateRoute;
+export default DashboardPrivate;

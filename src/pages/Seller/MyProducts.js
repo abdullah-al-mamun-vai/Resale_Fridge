@@ -46,6 +46,7 @@ const MyProducts = () => {
                             <th>Title</th>
                             <th>Price</th>
                             <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -66,8 +67,11 @@ const MyProducts = () => {
                                     </td>
                                     <td>{product?.product}</td>
                                     <td>{product?.discount_price}</td>
+
+                                    {product?.sold_out === true ? <td> sold Out </td> : <td> available </td>}
+
                                     {
-                                        !product.addvertise && <th><button onClick={() => handleAdd(product?._id)} className="btn btn-neutral text-primary">Addvertise</button></th>
+                                        !product.addvertise === true && <th><button onClick={() => handleAdd(product?._id)} className="btn btn-neutral text-primary">Addvertise</button></th>
                                     }
 
                                 </tr>)

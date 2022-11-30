@@ -8,6 +8,7 @@ const Navbar = () => {
     const { user, handleOut } = useContext(UserContext);
     const ourMenu = <>
         <li><Link to={'/home'}>Home</Link></li>
+        <li><Link to={'/blog'}>blog</Link></li>
         <li><Link to={'/dashboard'}>Dashboard</Link></li>
         {
             user ?
@@ -55,7 +56,7 @@ const Navbar = () => {
                     <Link to={'/'} className="btn btn-ghost uppercase text-xl text-secondary">Butterfly</Link>
                 </div>
                 <div className="navbar-end hidden lg:flex">
-                    <ul className="menu menu-horizontal p-0 text-secondary">
+                    <ul className="menu menu-horizontal p-0 text-secondary capitalize font-semibold">
                         {ourMenu}
                     </ul>
                 </div>

@@ -1,5 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useState } from 'react';
+import PrivateRoute from '../PrivateRoute/PrivateRoute';
+import AddModal from './AddModal';
 import Advertise from './Advertise';
 import Banner from './Banner';
 import Category from './Category';
@@ -14,13 +16,15 @@ const Home = () => {
             return data
         }
     })
+    const [singleaddvertise, setSingleaddvertise] = useState({})
     return (
         <div>
             <Banner></Banner>
             <Category></Category>
             {
-                addvertised > 0 && <Advertise addvertised={addvertised}></Advertise>
+                addvertised && <Advertise setSingleaddvertise={setSingleaddvertise} addvertised={addvertised}></Advertise>
             }
+            <PrivateRoute> <AddModal singleaddvertise={singleaddvertise}></AddModal></PrivateRoute>
             <Service></Service>
         </div>
     );
